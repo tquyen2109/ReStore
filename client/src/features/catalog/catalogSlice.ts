@@ -6,28 +6,28 @@ import {RootState} from "../../app/store/configureStore";
 const productAdapter = createEntityAdapter<Product>();
 export const fetchProductsAsync = createAsyncThunk<Product[]>(
     'catalog/fetchProductsAsync',
-    async () =>
+    async (_,thunkApi) =>
     {
         try {
             return await agent.Catalog.list();
         }
-        catch (error)
+        catch (error: any)
         {
-            console.log(error);
+            return  thunkApi.rejectWithValue({error: error.data})
         }
     }
 )
 
 export const fetchProductAsync = createAsyncThunk<Product, number>(
     'catalog/fetchProductAsync',
-    async (productId) =>
+    async (productId, thunkApi) =>
     {
         try {
             return await agent.Catalog.details(productId);
         }
-        catch (error)
+        catch (error: any)
         {
-            console.log(error);
+            return thunkApi.rejectWithValue({error: error.data})
         }
     }
 )
