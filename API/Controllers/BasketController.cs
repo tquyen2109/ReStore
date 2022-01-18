@@ -27,9 +27,7 @@ namespace API.Controller
             return MapBasketToDto(basket);
         }
 
-       
-
-
+        
         [HttpPost]
         public async Task<ActionResult<BasketDto>> AddItemToBasket(int productId, int quantity)
         {
@@ -41,8 +39,7 @@ namespace API.Controller
             return result ? CreatedAtRoute("GetBasket",MapBasketToDto(basket)) : BadRequest(new ProblemDetails{Title = "Problem saving basket"});
         }
 
-
-
+        
         [HttpDelete]
         public async Task<ActionResult> RemoveBasketItem(int productId, int quantity)
         {
