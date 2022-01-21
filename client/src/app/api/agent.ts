@@ -62,7 +62,7 @@ const Catalog = {
 const Account = {
     login: (values: any) => requests.post('account/login', values),
     register: (values: any) => requests.post('account/register', values),
-    currentUser: (values: any) => requests.get('account/currentUser', values),
+    currentUser: () => requests.get('account/currentUser'),
 }
 const TestErrors = {
     get400Error: () => requests.get('buggy/bad-request'),
