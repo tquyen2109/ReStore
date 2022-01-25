@@ -24,8 +24,14 @@ export default function Login() {
         mode: 'all'
     });
     async function submitForm(data: FieldValues) {
-        await dispatch(sighInUser(data));
-        history.push('/catalog');
+        try {
+            await dispatch(sighInUser(data));
+            history.push('/catalog');
+        }
+        catch (error) {
+            console.log(error);
+        }
+
     }
     return (
         <ThemeProvider theme={theme}>
